@@ -105,7 +105,7 @@ func main() {
       Write(rw)
   })
 
-	// Start the service. It handles all integrations start logic (when applicable)
+  // Start the service. It handles all integrations start logic (when applicable)
   // and runs until an interrupt signal.
   if err := service.Start(); err != nil {
     panic(err)
@@ -213,10 +213,10 @@ func main() {
     ctx := event.ContextWithEvent(req.Context(), e)
     
     // Start a new span, which is a child of the current HTTP request trace.
-    ctx, span := trace.Start(ctx, trace.SpanKindClient)
+    ctx, span := trace.Start(ctx, trace.SpanKindClient, "span title")
     defer span.End()
 
-    log.Debug(ctx, "log is now tied to both the router's trace and this custom span")
+    log.Debug(ctx, "log is tied to the router's trace and this custom span via ctx")
 
     rest.NewResponseSuccess[rest.NoMetadata, rest.NoData](req).
       SetStatus(http.StatusAccepted).
