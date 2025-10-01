@@ -1,0 +1,27 @@
+type: object
+x-go-type: errorstack.Error
+x-go-type-import:
+  path: github.com/mountayaapp/helix.go/errorstack
+
+properties:
+  message:
+    type: string
+    example: You are not authorized to perform this action
+  validations:
+    type: array
+    items:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Security requirements must be set
+        path:
+          type: array
+          items:
+            type: string
+          example:
+            - request
+            - headers
+            - X-API-KEY
+required:
+  - message

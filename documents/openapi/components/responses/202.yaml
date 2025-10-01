@@ -1,0 +1,6 @@
+description: Accepted
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/202.yaml

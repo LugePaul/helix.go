@@ -1,0 +1,6 @@
+description: Service Unavailable
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/503.yaml

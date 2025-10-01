@@ -1,0 +1,6 @@
+description: Payment Required
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/402.yaml

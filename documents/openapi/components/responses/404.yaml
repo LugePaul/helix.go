@@ -1,0 +1,6 @@
+description: Not Found
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/404.yaml

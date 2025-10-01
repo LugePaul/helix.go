@@ -1,0 +1,6 @@
+description: Bad Request
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/400.yaml

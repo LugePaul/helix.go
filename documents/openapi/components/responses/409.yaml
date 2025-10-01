@@ -1,0 +1,6 @@
+description: Conflict
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/409.yaml

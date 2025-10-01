@@ -1,0 +1,25 @@
+titleAndCommits: true
+allowMergeCommits: true
+allowRevertCommits: true
+
+types:
+  - "docs"
+  - "feat"
+  - "fix"
+  - "refactor"
+  - "revert"
+  - "version"
+
+scopes:
+  - "bucket"
+  - "cloudprovider"
+  - "event"
+  - "errorstack"
+  - "internal"
+  - "logger"
+  - "postgres"
+  - "rest"
+  - "service"
+  - "temporal"
+  - "tracer"
+  - "valkey"

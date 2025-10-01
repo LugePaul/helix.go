@@ -1,0 +1,6 @@
+description: Payload Too Large
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/413.yaml

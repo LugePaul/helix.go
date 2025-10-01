@@ -1,0 +1,6 @@
+description: Method Not Allowed
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/405.yaml

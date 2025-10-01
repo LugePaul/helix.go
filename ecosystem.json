@@ -1,0 +1,49 @@
+{
+  "packages": [
+    {
+      "path": "errorstack"
+    },
+    {
+      "path": "event"
+    },
+    {
+      "path": "integration"
+    },
+    {
+      "path": "service"
+    },
+    {
+      "path": "telemetry/log"
+    },
+    {
+      "path": "telemetry/trace"
+    }
+  ],
+  "integrations": [
+    {
+      "id": "rest",
+      "name": "REST router",
+      "description": "for building REST APIs"
+    },
+    {
+      "id": "temporal",
+      "name": "Temporal",
+      "description": "for durable executions"
+    },
+    {
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "description": "as transactional database"
+    },
+    {
+      "id": "valkey",
+      "name": "Valkey",
+      "description": "as key/value datastore"
+    },
+    {
+      "id": "bucket",
+      "name": "Bucket",
+      "description": "for standardized blob storage"
+    }
+  ]
+}
