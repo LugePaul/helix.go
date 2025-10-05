@@ -75,6 +75,7 @@ $ go get github.com/mountayaapp/helix.go/integration/rest
 ```
 
 Simple example on how to import, configure, and use the integration:
+
 ```go
 import (
   "net/http"

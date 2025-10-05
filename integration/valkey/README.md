@@ -28,6 +28,7 @@ $ go get github.com/mountayaapp/helix.go/integration/valkey
 ```
 
 Simple example on how to import, configure, and use the integration:
+
 ```go
 import (
   "context"

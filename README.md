@@ -38,12 +38,12 @@ simplifying maintenance and reducing complexity in our codebase.
   transparently, giving you real-time visibility into your services' health and
   performance with zero added effort.
 
-- **Consistent event propagation:** At the heart of helix is the "*Event*" object,
-  which is passed seamlessly between services via distributed tracing. This object
-  provides full end-to-end observability, enabling you to trace events across your
-  entire service mesh with minimal setup. Whether an event is handled by one
-  service or propagated across multiple, all its context is preserved and easily
-  accessible for debugging, analysis, and monitoring.
+- **Consistent event propagation:** At the heart of helix is the `event.Event`
+  object, which is passed seamlessly between services via distributed tracing. This
+  object provides full end-to-end observability, enabling you to trace events
+  across your entire service mesh with minimal setup. Whether an event is handled
+  by one service or propagated across multiple, all its context is preserved and
+  easily accessible for debugging, analysis, monitoring, and even usage tracking.
 
 - **Consistent error handling:** helix ensures a uniform approach to error handling
   and recording across the core library and all integrations. By using consistent
@@ -58,6 +58,19 @@ simplifying maintenance and reducing complexity in our codebase.
   strong type system and generics, the library ensures type safety at every layer
   of the application, reducing runtime errors and improving code clarity. This
   means fewer bugs, easier maintenance, and a more robust developer experience.
+
+## Environment variables
+
+helix relies on the following environment variables:
+
+- `ENVIRONMENT` represents the environment the service is currently running in.
+  When value is one of `local`, `localhost`, `dev`, `development`, the logger
+  handles logs at `debug` level and higher. Otherwise, the logger handles logs at
+  `info` level and higher.
+- `OTEL_SDK_DISABLED` can be set to `true` to disable sending OpenTelemetry logs
+  and traces to the OTLP endpoint. Defaults to `false`.
+- `OTEL_EXPORTER_OTLP_ENDPOINT` is the OTLP gRPC endpoint to send logs and traces
+  to. Example: `localhost:4317`.
 
 ## Quick start example
 
@@ -162,7 +175,7 @@ func main() {
   <summary>Logging</summary>
 
   Logs are automatically enriched with the trace and `event.Event` from the context,
-  ensuring immediate correlation in your log aggregation system.
+  ensuring immediate correlation between logs and traces across all services.
 
   ```go
   import (
@@ -254,10 +267,69 @@ logging, and robust distributed tracing across every external dependency.
 Supported integrations:
 
 - [REST router](./integration/rest/README.md) for building REST APIs.
-- [Temporal](./integration/temporal/README.md) for durable executions.
+- [Temporal](./integration/temporal/README.md) for durable, fault-tolerant
+  executions.
 - [PostgreSQL](./integration/postgres/README.md) as transactional database.
-- [Valkey](./integration/valkey/README.md) as key/value datastore.
+- [Valkey](./integration/valkey/README.md) as key/value cache database.
 - [Bucket](./integration/bucket/README.md) for standardized blob storage.
+
+## Orchestrators and cloud providers
+
+helix automatically detects the orchestrator or cloud provider your service is
+running on. When a recognized orchestrator or cloud provider is identified, traces
+and logs are automatically enriched with the corresponding attributes and fields.
+
+<details>
+  <summary>Kubernetes</summary>
+
+  Additional trace attributes:
+
+  - `kubernetes.namespace`
+  - `kubernetes.pod`
+
+  Additional log fields:
+
+  - `kubernetes_namespace`
+  - `kubernetes_pod`
+</details>
+
+<details>
+  <summary>Nomad</summary>
+
+  Additional trace attributes:
+
+  - `nomad.datacenter`
+  - `nomad.job`
+  - `nomad.namespace`
+  - `nomad.region`
+  - `nomad.task`
+
+  Additional log fields:
+
+  - `nomad_datacenter`
+  - `nomad_job`
+  - `nomad_namespace`
+  - `nomad_region`
+  - `nomad_task`
+</details>
+
+<details>
+  <summary>Render</summary>
+
+  Additional trace attributes:
+
+  - `render.instance_id`
+  - `render.service_id`
+  - `render.service_name`
+  - `render.service_type`
+
+  Additional log fields:
+
+  - `render_instance_id`
+  - `render_service_id`
+  - `render_service_name`
+  - `render_service_type`
+</details>
 
 ## License
 

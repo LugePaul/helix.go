@@ -28,7 +28,7 @@
     {
       "id": "temporal",
       "name": "Temporal",
-      "description": "for durable executions"
+      "description": "for durable, fault-tolerant executions"
     },
     {
       "id": "postgres",
@@ -38,7 +38,7 @@
     {
       "id": "valkey",
       "name": "Valkey",
-      "description": "as key/value datastore"
+      "description": "as key/value cache database"
     },
     {
       "id": "bucket",

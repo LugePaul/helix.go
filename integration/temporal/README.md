@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 The Temporal integration provides an opinionated way to interact with Temporal
-for durable executions.
+for durable, fault-tolerant executions.
 
 ## Trace attributes
 
@@ -43,6 +43,7 @@ $ go get github.com/mountayaapp/helix.go/integration/temporal
 ```
 
 Define type-safe workflows and activities:
+
 ```go
 import (
   "github.com/mountayaapp/helix.go/integration/temporal"
@@ -59,9 +60,10 @@ var MyActivity = temporal.NewActivity[
 ]("activity-name")
 ```
 
-### Worker
+### Register workflows
 
 Register type-safe workflows and activities in a worker:
+
 ```go
 import (
   "github.com/mountayaapp/helix.go/integration/temporal"
@@ -78,16 +80,17 @@ cfg := temporal.Config{
 
 _, worker, err := temporal.Connect(cfg)
 if err != nil {
-  return err
+  // ...
 }
 
 MyWorkflow.Register(worker, TypeSafeFunction)
 MyActivity.Register(worker, TypeSafeFunction)
 ```
 
-### Execute workflows from a client
+### Execute workflows
 
 Execute type-safe workflows from a client:
+
 ```go
 import (
   "github.com/mountayaapp/helix.go/integration/temporal"
@@ -101,7 +104,7 @@ cfg := temporal.Config{
 
 client, _, err := temporal.Connect(cfg)
 if err != nil {
-  return err
+  // ...
 }
 
 result, err := MyWorkflow.Execute(ctx, client, opts, TypeSafeInput)
@@ -110,9 +113,43 @@ if err != nil {
 }
 ```
 
-### Execute activities from a workflow
+### Schedule workflows
+
+Schedule type-safe workflows from a client:
+
+```go
+import (
+  "github.com/mountayaapp/helix.go/integration/temporal"
+  "github.com/mountayaapp/helix.go/service"
+)
+
+cfg := temporal.Config{
+  Address:   "localhost:7233",
+  Namespace: "default",
+}
+
+client, _, err := temporal.Connect(cfg)
+if err != nil {
+  // ...
+}
+
+opts := temporal.ScheduleOptions{
+  TaskQueue: "task-queue",
+  CronExpressions: []string{
+    "0 1 * * *",
+  },
+}
+
+err = MyWorkflow.Schedule(ctx, client, opts)
+if err != nil {
+  // ...
+}
+```
+
+### Execute activities
 
 Execute type-safe activities from a workflow:
+
 ```go
 err := MyActivity.Execute(ctx, payload).GetResult(ctx, &result)
 if err != nil {

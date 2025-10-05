@@ -43,6 +43,7 @@ $ go get github.com/mountayaapp/helix.go/integration/bucket
 ```
 
 Simple example on how to import, configure, and use the integration:
+
 ```go
 import (
   "context"
