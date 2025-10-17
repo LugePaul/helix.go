@@ -19,17 +19,17 @@ func TestEventFromContext(t *testing.T) {
 		success  bool
 	}{
 		{
-			ctx:      context.WithValue(context.Background(), contextkey.Event, "not an Event"),
+			ctx:      context.WithValue(t.Context(), contextkey.Event, "not an Event"),
 			expected: Event{},
 			success:  false,
 		},
 		{
-			ctx:      context.WithValue(context.Background(), contextkey.Event, Event{}),
+			ctx:      context.WithValue(t.Context(), contextkey.Event, Event{}),
 			expected: Event{},
 			success:  true,
 		},
 		{
-			ctx: context.WithValue(context.Background(), contextkey.Event, Event{
+			ctx: context.WithValue(t.Context(), contextkey.Event, Event{
 				Name: "testing",
 			}),
 			expected: Event{
@@ -38,7 +38,7 @@ func TestEventFromContext(t *testing.T) {
 			success: true,
 		},
 		{
-			ctx: context.Background(),
+			ctx: t.Context(),
 			baggage: func() baggage.Baggage {
 				b, _ := baggage.New()
 				memberName, _ := baggage.NewMember("event.name", "testing")
@@ -83,11 +83,11 @@ func TestContextWithEvent(t *testing.T) {
 		success  bool
 	}{
 		{
-			ctx: context.Background(),
+			ctx: t.Context(),
 			input: Event{
 				Name: "testing",
 			},
-			expected: context.WithValue(context.Background(), contextkey.Event, Event{
+			expected: context.WithValue(t.Context(), contextkey.Event, Event{
 				Name: "testing",
 			}),
 			success: true,
