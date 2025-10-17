@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/mountayaapp/helix.go v0.20.0
 	github.com/stretchr/testify v1.11.1
-	github.com/valkey-io/valkey-go v1.0.65
+	github.com/valkey-io/valkey-go v1.0.67
 )
 
 require (
@@ -28,7 +28,7 @@ require (
 	go.uber.org/zap v1.27.0 // indirect
 	golang.org/x/net v0.44.0 // indirect
 	golang.org/x/sys v0.36.0 // indirect
-	golang.org/x/text v0.29.0 // indirect
+	golang.org/x/text v0.30.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250825161204-c5933d9347a5 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250825161204-c5933d9347a5 // indirect
 	google.golang.org/grpc v1.75.1 // indirect

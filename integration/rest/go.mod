@@ -10,7 +10,7 @@ require (
 	github.com/uptrace/bunrouter/extra/bunrouterotel v1.0.23
 	github.com/uptrace/bunrouter/extra/reqlog v1.0.23
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.63.0
-	golang.org/x/text v0.29.0
+	golang.org/x/text v0.30.0
 )
 
 require (
