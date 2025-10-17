@@ -141,10 +141,14 @@ func extractEventFromBaggage(b baggage.Baggage) Event {
 				e.Params = make(url.Values)
 			}
 
-			key := strings.TrimPrefix(m.Key(), "event.params.")
-			split := strings.Split(key, ".")
+			keyWithIndex := strings.TrimPrefix(m.Key(), "event.params.")
+			if idx := strings.Index(keyWithIndex, "."); idx != -1 {
+				paramKey := keyWithIndex[:idx]
+				e.Params.Add(paramKey, m.Value())
+			} else {
+				e.Params.Add(keyWithIndex, m.Value())
+			}
 
-			e.Params.Add(split[0], m.Value())
 			continue
 		}
 
