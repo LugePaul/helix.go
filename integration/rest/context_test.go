@@ -20,7 +20,7 @@ func TestParamsFromContext(t *testing.T) {
 		{
 			registered: "/hello",
 			requested:  "/hello",
-			expected:   nil,
+			expected:   map[string]string{},
 			found:      false,
 		},
 		{
