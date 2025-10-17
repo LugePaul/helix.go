@@ -1,0 +1,6 @@
+description: Not Implemented
+
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/rest/501.yaml
